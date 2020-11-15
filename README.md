@@ -72,7 +72,7 @@ We hereby simulate how the price of a binary option fluctuates as it approaches 
 
 [![Binary Option Price Fluctuation | Arithmetic Brownial Motion][8]][8]
 
-The fluctuation of the forecast is completely insensitive to different values of volatility. The charts for different volatility *perfectly* overlaps. This is explained by observing that the volatility of the realized process `S` (i.e. the swings in the consensus) is the same as that employed. **Regardless from the volatility of the underlying process, the price of the binary option never converges to 50%** *This (still) invalidates assumption no.3*
+The fluctuation of the forecast is completely insensitive to different values of volatility. The charts for different volatility *perfectly* overlaps. This is explained by observing that the volatility of the realized process `S` (i.e. the swings in the consensus) is the same as the one used to price the binary option. **Regardless from the volatility of the underlying process, the price of the binary option never converges to 50%** *This (still) invalidates assumption no.3*
 
 ---
 
