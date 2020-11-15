@@ -55,7 +55,36 @@ There is an interesting [post on Quora][5] that highlights how Taleb "proves" hi
 
 I feel there is quite some confusion revolving this paper and its commentaries, partially due to the cryptic and unapologetic style of Taleb as well as to the fact that many opinions on the issue are imo excessively polarized by the pov of his follower/detractors.
 
-For the sake of transparency: all the analysis above are based on the implementation of binary option pricer from https://www.quantlib.org/ and the script used for the analysis is available for scrutiny and corrections at my [github][6]. 
+For the sake of transparency: all the analysis above are based on the implementation of binary option pricer from https://www.quantlib.org/ and the script used for the analysis is available for scrutiny and corrections at my [github][6]
+
+---
+
+**Edit**:
+
+If `S` is assumed to follow Arithmetic Brownian Motion:
+
+**Analysis of assumption no.2** We hereby simulate how the price of a binary option with the above mentioned features behaves with changes in volatility. We examine the outcome for ATM, ITM, and OTM options, for the sake of completeness. **Option price converges towards 50% as volatility increases.** *This is coherent with Assumption 2*
+
+[![Moneyness - Vega | Arithmetic Brownial Motion][7]][7]
+
+**Analysis of assumption no.3**
+We hereby simulate how the price of a binary option fluctuates as it approaches maturity, based on the volatility of the underlying process `S`. We examine here the case of an ATM Option, outcome for OTM and ITM are however aligned. Simulation covers one year time period prior to the exercise. Our methodology requires that the same binary option is re-priced daily based on a) the `TTM` (time-to-maturity) and on b) the value of the underlying discrete random process `S` which is assumed to behave as a random walk. Perfect knowledge of the underlying process is assumed, i.e. the vol of the binary option is perfectly aligned to the true volatility volatility of `S`.
+
+[![Binary Option Price Fluctuation | Arithmetic Brownial Motion][8]][8]
+
+The fluctuation of the forecast is completely insensitive to different values of volatility. The charts for different volatility *perfectly* overlaps. This is explained by observing that the volatility of the realized process `S` (i.e. the swings in the consensus) is the same as that employed. **Regardless from the volatility of the underlying process, the price of the binary option never converges to 50%** *This (still) invalidates assumption no.3*
+
+---
+
+**Postscript**
+
+Taleb's main argument is that an arbitrage-free forecast should stick around 50% as volatility increases. This can only be true under the assumption that *a)* the future volatility of the consensus `S` will be *much* larger than the historical volatility and *b)* **that the polls will not reflect such change in volatility**. (The gray lines in the chart are the representation of the option price w/ forward volatility being 2x, 5x and 10x of the polled volatility). 
+
+[![Binary Option Price Fluctuation | Arithmetic Brownial Motion | Larger FWD vol][9]][9]
+
+Clearly, if you believe that *polls are rubbish* it is then perfectly meaningful to model the election as a coin-toss. It is - I hope - self-evident that **this position does not stand to the simplest of backtesting (i.e. poll-based prediction is in hindsight much more accurate than a coin-toss)**. There is some irony in the observation that Taleb's 50-50 prediction could be more prone to arbitrage than 538's one. 
+
+Conversely, if we accept the assumption that the polls will keep adjusting to the "true" new volatility, then the forecast fluctuation is pulled towards the "volatility insensitive" limiting black line.
 
 
   [1]: https://projects.fivethirtyeight.com/2020-election-forecast/
@@ -64,3 +93,7 @@ For the sake of transparency: all the analysis above are based on the implementa
   [4]: https://i.stack.imgur.com/vg32b.png
   [5]: https://qr.ae/pNOkdZ
   [6]: https://github.com/gbonomib/forecastarbitrage/
+  [7]: https://i.stack.imgur.com/A0dFt.png
+  [8]: https://i.stack.imgur.com/iHIJr.png
+  [9]: https://i.stack.imgur.com/QNpTT.png
+
